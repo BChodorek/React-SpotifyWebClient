@@ -1,2 +1,2 @@
-# GoogleKeep-Twin
-React made Google Keep copy
+#Spotify Web Client done with React + Redux + Styled Components
+Copy of Spotify Web Client
