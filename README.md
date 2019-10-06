@@ -1,4 +1,4 @@
-#Spotify Web Client done with React + Redux + Styled Components
+# Spotify Web Client with React-Redux and Styled-Components
 
 *Work in progress*
 
