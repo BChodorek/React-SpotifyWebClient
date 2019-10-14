@@ -2,7 +2,7 @@ import queryStrings from 'query-string';
 
 const routeConfig = {
   client_id: process.env.REACT_APP_SPOTIFY_CLIENT_ID,
-  redirect_uri: 'http://localhost:3000/auth',
+  redirect_uri: `${process.env.REACT_APP_HOST}/auth`,
   response_type: 'token',
 };
 const routeParams = queryStrings.stringify(routeConfig);

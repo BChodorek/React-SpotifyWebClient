@@ -19,9 +19,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
+  "homepage": "http://bchodorek.github.io/react-spotifywebclient",
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -49,6 +50,7 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^1.7.0",
+    "gh-pages": "^2.1.1",
     "prettier": "^1.18.2"
   }
 }

@@ -30,7 +30,6 @@ class UserInfo extends Component {
         <StyledWrapper>
           <StyledImg src={userImg} alt="avatar" />
           <h1>{userName}</h1>
-          <Button>Just a button</Button>
         </StyledWrapper>
       </>
     );
