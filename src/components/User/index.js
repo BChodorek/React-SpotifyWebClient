@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { getUser } from 'actions/UserActions';
+import Button from 'components/utilities/Button';
+
+const StyledWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+`;
+
+const StyledImg = styled.img`
+  max-width: 15rem;
+  border-radius: 50%;
+`;
 
 class UserInfo extends Component {
   componentDidMount() {
@@ -12,8 +27,11 @@ class UserInfo extends Component {
     const { userName, userImg } = this.props;
     return (
       <>
-        <img src={userImg} alt="avatar" />
-        <h1>{userName}</h1>
+        <StyledWrapper>
+          <StyledImg src={userImg} alt="avatar" />
+          <h1>{userName}</h1>
+          <Button>Just a button</Button>
+        </StyledWrapper>
       </>
     );
   }
