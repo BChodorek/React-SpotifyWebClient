@@ -1,0 +1,16 @@
+export const theme = {
+  black: 'hsl(240, 11%, 18%)',
+  grey: 'hsl(142, 4%, 50%)',
+  lightGrey: 'hsl(0, 0%, 85%)',
+  activeGreen: 'hsl(141, 73%, 42%)',
+  fontSize: {
+    small: '1.2rem',
+    medium: '1.6rem',
+    big: '2rem',
+  },
+  fontWeight: {
+    light: 300,
+    regular: 400,
+    bold: 600,
+  },
+};
