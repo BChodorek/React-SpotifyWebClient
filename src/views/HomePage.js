@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import UserInfo from 'components/User';
-import AllPlaylists from 'components/Playlists';
+import UserInfo from 'components/User/UserInfo';
+import PlaylistGrid from 'components/Playlists/PlaylistGrid';
 import { connect } from 'react-redux';
 import { setToken } from 'actions/AuthActions';
 
@@ -17,7 +17,7 @@ class HomePage extends Component {
       <>
         <StyledWrapper>
           <UserInfo token={token} />
-          <AllPlaylists token={token} />
+          <PlaylistGrid token={token} />
         </StyledWrapper>
       </>
     );

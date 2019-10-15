@@ -15,6 +15,7 @@ const StyledWrapper = styled.div`
 const StyledImg = styled.img`
   max-width: 15rem;
   border-radius: 50%;
+  box-shadow: ${({ theme }) => theme.boxShadow};
 `;
 
 class UserInfo extends Component {
