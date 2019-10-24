@@ -29,7 +29,7 @@ const rootReducer = (state = initialState, action) => {
     case GET_PLAYLISTS_SUCCESS:
       return {
         ...state,
-        playlists: action.payload.data.items,
+        playlists: action.payload,
       };
     case GET_PLAYLISTS_FAIL:
       return {

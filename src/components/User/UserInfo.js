@@ -5,15 +5,16 @@ import { getUser } from 'actions/UserActions';
 import Button from 'components/utilities/Button';
 
 const StyledWrapper = styled.div`
+  grid-area: userinfo;
+  margin: 2rem 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 2rem 0;
 `;
 
 const StyledImg = styled.img`
-  max-width: 15rem;
+  max-width: 12rem;
   border-radius: 50%;
   box-shadow: ${({ theme }) => theme.boxShadow};
 `;
