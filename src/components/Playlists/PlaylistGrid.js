@@ -6,8 +6,8 @@ import { getAllPlaylists } from 'actions/PlaylistsActions';
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-gap: 1rem;
+  grid-gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 `;
 
 export class PlaylistGrid extends Component {

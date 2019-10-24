@@ -14,6 +14,8 @@ export const GlobalStyles = createGlobalStyle`
     background: -webkit-linear-gradient(left,  hsl(215,51%,27%) 0%,hsl(0,0%,17%) 100%);
     background: linear-gradient(to right,  hsl(215,51%,27%) 0%,hsl(0,0%,17%) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#213e66', endColorstr='#2b2b2b',GradientType=1 );
+    /* background-repeat: no-repeat; */
+    background-size: cover;
   }
 
   body {
