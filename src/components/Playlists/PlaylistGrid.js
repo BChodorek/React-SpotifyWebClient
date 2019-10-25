@@ -1,43 +1,51 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import styled from 'styled-components';
 import PlaylistCard from './PlaylistCard';
-import { getAllPlaylists } from 'actions/PlaylistsActions';
+
+const StyledContainer = styled.div`
+  grid-area: playlistgrid;
+  padding: 4rem;
+`;
 
 const StyledGrid = styled.div`
   display: grid;
-  grid-gap: 0.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 0.4rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 `;
 
-export class PlaylistGrid extends Component {
-  componentDidMount() {
-    const { getAllPlaylists, token } = this.props;
-    getAllPlaylists(token);
-  }
+const StyledHeading = styled.h1`
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: 3rem;
+`;
+
+class PlaylistGrid extends Component {
+  componentDidMount() {}
 
   render() {
-    const { playlists } = this.props;
+    const { recentTracks } = this.props;
+    const newestPlaylists = this.props.playlists
+      .slice(0, 7)
+      .map(playlist => (
+        <PlaylistCard {...playlist} imageUrl={playlist.images[0].url} key={playlist.id} />
+      ));
+    console.log(...recentTracks);
     return (
-      <>
-        <h3>Your newest playlists:</h3>
+      <StyledContainer>
+        <StyledHeading>Your recently played:</StyledHeading>
         <StyledGrid>
-          {playlists && playlists.map(playlist => <PlaylistCard {...playlist} key={playlist.id} />)}
+          {recentTracks.map(recentTrack => (
+            <PlaylistCard
+              name={recentTrack.track.name}
+              imageUrl={recentTrack.track.album.images[0].url}
+              key={recentTrack.track.id}
+            />
+          ))}
         </StyledGrid>
-      </>
+        <StyledHeading>Your newest playlists:</StyledHeading>
+        <StyledGrid>{newestPlaylists}</StyledGrid>
+      </StyledContainer>
     );
   }
 }
 
-const mapStateToProps = ({ playlists }) => ({
-  playlists,
-});
-
-const mapDispatchToProps = dispatch => ({
-  getAllPlaylists: token => dispatch(getAllPlaylists(token)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PlaylistGrid);
+export default PlaylistGrid;

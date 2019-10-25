@@ -4,6 +4,8 @@ import {
   GET_USER_FAIL,
   GET_PLAYLISTS_SUCCESS,
   GET_PLAYLISTS_FAIL,
+  GET_RECENT_SUCCESS,
+  GET_RECENT_FAIL,
 } from '../actions/constants';
 
 const initialState = {};
@@ -29,12 +31,17 @@ const rootReducer = (state = initialState, action) => {
     case GET_PLAYLISTS_SUCCESS:
       return {
         ...state,
-        playlists: action.payload.data.items,
+        playlists: action.payload,
       };
     case GET_PLAYLISTS_FAIL:
       return {
         ...state,
         err: action.err,
+      };
+    case GET_RECENT_SUCCESS:
+      return {
+        ...state,
+        recentTracks: [...action.payload.data.items],
       };
     default:
       return state;
