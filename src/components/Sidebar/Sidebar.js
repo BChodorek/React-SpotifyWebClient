@@ -1,44 +1,39 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { connect } from 'react-redux';
+import LogoutButton from 'components/User/LogoutButton';
 
 const StyledContainer = styled.div`
   background-color: ${({ theme }) => theme.black};
   grid-area: sidebar;
+  grid-column: span 1;
 `;
 const StyledGrid = styled.div`
   position: fixed;
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledList = styled.ul`
   list-style: none;
+  width: 12vw;
   height: 50rem;
   overflow: hidden;
   overflow-y: scroll;
 `;
 
-class Sidebar extends Component {
-  render() {
-    const { playlists } = this.props;
-    return (
-      <StyledContainer>
-        <StyledGrid>
-          <StyledList>
-            {playlists && playlists.map(playlist => <li key={playlist.id}>{playlist.name}</li>)}
-          </StyledList>
-        </StyledGrid>
-      </StyledContainer>
-    );
-  }
-}
+const Sidebar = ({ playlists }) => {
+  return (
+    <StyledContainer>
+      <LogoutButton />
+      <StyledGrid>
+        <StyledList>
+          {playlists.map(playlist => (
+            <li key={playlist.id}>{playlist.name}</li>
+          ))}
+        </StyledList>
+      </StyledGrid>
+    </StyledContainer>
+  );
+};
 
-const mapStateToProps = ({ playlists }) => ({
-  playlists,
-});
-
-const mapDispatchToProps = {};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Sidebar);
+export default Sidebar;

@@ -1,5 +1,10 @@
 import axios from 'axios';
-import { GET_PLAYLISTS_SUCCESS, GET_PLAYLISTS_FAIL } from './constants';
+import {
+  GET_PLAYLISTS_SUCCESS,
+  GET_PLAYLISTS_FAIL,
+  GET_RECENT_SUCCESS,
+  GET_RECENT_FAIL,
+} from './constants';
 
 const fetchPlaylists = (
   token,
@@ -13,7 +18,7 @@ const fetchPlaylists = (
     .then(async payload => {
       playlists.push(...payload.data.items);
       if (payload.data.next !== null) {
-        await nextPageCall(token, payload.data.next, playlists);
+        await fetchPlaylists(token, payload.data.next, playlists);
       }
       return playlists;
     })
@@ -21,9 +26,20 @@ const fetchPlaylists = (
 };
 
 export const getAllPlaylists = token => dispatch => {
-  fetchPlaylists(token).then(payload =>
-    dispatch({ type: GET_PLAYLISTS_SUCCESS, payload }).catch(err =>
-      dispatch({ type: GET_PLAYLISTS_FAIL, err }),
-    ),
-  );
+  fetchPlaylists(token)
+    .then(payload => dispatch({ type: GET_PLAYLISTS_SUCCESS, payload }))
+    .catch(err => dispatch({ type: GET_PLAYLISTS_FAIL, err }));
+};
+
+export const getRecentlyPlayed = token => dispatch => {
+  return axios
+    .get('https://api.spotify.com/v1/me/player/recently-played?type=track&limit=7', {
+      headers: { Authorization: 'Bearer ' + token },
+    })
+    .then(payload => {
+      dispatch({ type: GET_RECENT_SUCCESS, payload });
+    })
+    .catch(err => {
+      dispatch({ type: GET_RECENT_FAIL, err });
+    });
 };

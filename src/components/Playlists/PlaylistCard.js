@@ -21,13 +21,14 @@ const StyledContainer = styled.div`
   }
 `;
 
-const PlaylistCard = ({ images, name }) => {
+const PlaylistCard = ({ imageUrl, name, artistName }) => {
   return (
     <StyledContainer>
       <div>
-        <img src={images[0].url} />
+        <img src={imageUrl} />
       </div>
       <p>{name}</p>
+      {artistName && <p>{artistName}</p>}
     </StyledContainer>
   );
 };
