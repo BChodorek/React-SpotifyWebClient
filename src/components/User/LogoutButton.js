@@ -5,24 +5,30 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { setToken } from 'actions/AuthActions';
 
-const StyledButton = styled(Button)`
-  position: absolute;
-  top: 1rem;
-  right: 4rem;
-  font-size: 1rem;
-  border-color: #fff;
+const Container = styled.div`
+  margin-top: auto;
+  margin-bottom: 3rem;
 `;
 
-const LogoutButton = ({ token, setToken }) => {
+const StyledButton = styled(Button)`
+  font-size: 1rem;
+  border-color: #fff;
+  :hover {
+    border-color: ${({ theme }) => theme.activeGreen};
+    background-color: ${({ theme }) => theme.activeGreen};
+  }
+`;
+
+const LogoutButton = ({ setToken }) => {
   const handleClick = () => {
     setToken('');
     return <Redirect to="/login" />;
   };
 
   return (
-    <div>
+    <Container>
       <StyledButton onClick={handleClick}>Log out</StyledButton>
-    </div>
+    </Container>
   );
 };
 
