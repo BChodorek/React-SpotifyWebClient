@@ -9,21 +9,27 @@ import { getAllPlaylists } from 'actions/PlaylistsActions';
 import { getRecentlyPlayed } from 'actions/PlaylistsActions';
 
 const StyledWrapper = styled.div`
-  height: 100vh;
   display: grid;
-  grid-template-columns: 1fr repeat(3, 2fr);
-  grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
-  grid-template-areas:
-    'sidebar userinfo userinfo userinfo'
-    'sidebar  playlistgrid playlistgrid playlistgrid'
-    'sidebar  playlistgrid playlistgrid playlistgrid';
+  grid-gap: 2rem;
+  grid-template-columns: 25rem auto;
+  @media (max-width: 767px) {
+    grid-template-columns: auto;
+    grid-gap: 0;
+  }
 `;
-
+const StyledFlex = styled.div`
+  grid-column-start: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+`;
 const StyledHeading = styled.h2`
   grid-column: 1/-1;
+  margin-top: 20rem;
   text-align: center;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: 5rem;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
 
 class HomePage extends Component {
@@ -38,17 +44,19 @@ class HomePage extends Component {
     const { token, userName, userImg, playlists, recentTracks } = this.props;
     return (
       <>
-        <StyledWrapper>
+        <>
           {playlists && recentTracks ? (
-            <>
+            <StyledWrapper>
               <Sidebar playlists={playlists} />
-              <UserInfo userImg={userImg} userName={userName} />
-              <PlaylistGrid token={token} playlists={playlists} recentTracks={recentTracks} />
-            </>
+              <StyledFlex>
+                <UserInfo userImg={userImg} userName={userName} />
+                <PlaylistGrid token={token} playlists={playlists} recentTracks={recentTracks} />
+              </StyledFlex>
+            </StyledWrapper>
           ) : (
             <StyledHeading>Loading...</StyledHeading>
           )}
-        </StyledWrapper>
+        </>
       </>
     );
   }

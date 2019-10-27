@@ -1,21 +1,27 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import PlaylistCard from './PlaylistCard';
+import Card from './Card';
 
 const StyledContainer = styled.div`
-  grid-area: playlistgrid;
-  padding: 4rem;
+  padding: 2rem;
 `;
 
 const StyledGrid = styled.div`
+  text-align: center;
+  margin-bottom: 8rem;
   display: grid;
-  grid-gap: 0.4rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-gap: 1.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  @media (max-width: 411px) {
+    grid-template-columns: repeat(auto-fit, minmax(13rem, auto));
+    grid-gap: 1rem;
+  }
 `;
 
 const StyledHeading = styled.h1`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: 3rem;
+  margin: 2rem 0;
 `;
 
 class PlaylistGrid extends Component {
@@ -25,16 +31,13 @@ class PlaylistGrid extends Component {
     const { recentTracks } = this.props;
     const newestPlaylists = this.props.playlists
       .slice(0, 7)
-      .map(playlist => (
-        <PlaylistCard {...playlist} imageUrl={playlist.images[0].url} key={playlist.id} />
-      ));
-    console.log(...recentTracks);
+      .map(playlist => <Card {...playlist} imageUrl={playlist.images[0].url} key={playlist.id} />);
     return (
       <StyledContainer>
         <StyledHeading>Your recently played:</StyledHeading>
         <StyledGrid>
           {recentTracks.map(recentTrack => (
-            <PlaylistCard
+            <Card
               name={recentTrack.track.name}
               imageUrl={recentTrack.track.album.images[0].url}
               key={recentTrack.track.id}

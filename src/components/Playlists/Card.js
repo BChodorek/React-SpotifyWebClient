@@ -2,26 +2,30 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledContainer = styled.div`
+  height: 100%;
+  text-align: center;
+
   display: flex;
-  flex-wrap: wrap;
   flex-direction: column;
-  justify-content: center;
+  justify-items: center;
   align-items: center;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 
+  div {
+    height: 100%;
+  }
+
   img {
-    width: 15rem;
+    width: 75%;
     box-shadow: ${({ theme }) => theme.boxShadow};
-    transition: 0.2s ease-in;
   }
 
   p {
-    text-align: center;
-    padding: 0.5rem;
+    padding-top: 1rem;
   }
 `;
 
-const PlaylistCard = ({ imageUrl, name, artistName }) => {
+const Card = ({ imageUrl, name, artistName }) => {
   return (
     <StyledContainer>
       <div>
@@ -33,4 +37,4 @@ const PlaylistCard = ({ imageUrl, name, artistName }) => {
   );
 };
 
-export default PlaylistCard;
+export default Card;
