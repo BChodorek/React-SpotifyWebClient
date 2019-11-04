@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 export const allRoutes = {
   home: '/home',
   login: '/login',
+  auth: '/auth',
 };
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
@@ -19,5 +20,3 @@ const mapStateToProps = ({ token }) => ({
   token,
 });
 export default connect(mapStateToProps)(ProtectedRoute);
-
-// (token ? )

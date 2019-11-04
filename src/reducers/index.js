@@ -1,4 +1,13 @@
-import { SET_TOKEN, GET_USER_SUCCESS, GET_USER_FAIL } from '../actions/constants';
+import {
+  SET_TOKEN,
+  GET_USER_SUCCESS,
+  GET_USER_FAIL,
+  GET_PLAYLISTS_SUCCESS,
+  GET_PLAYLISTS_FAIL,
+  GET_RECENT_SUCCESS,
+  GET_RECENT_FAIL,
+  PLAY_SONG,
+} from '../actions/constants';
 
 const initialState = {};
 
@@ -10,15 +19,41 @@ const rootReducer = (state = initialState, action) => {
         token: action.token,
       };
     case GET_USER_SUCCESS:
+      const { data } = action.payload;
       return {
         ...state,
-        userName: action.payload.data.display_name,
-        userImg: action.payload.data.images[0].url,
+        userName: data.display_name,
+        userImg: data.images[0] ? data.images[0].url : null,
       };
     case GET_USER_FAIL:
       return {
         ...state,
         err: action.err,
+      };
+    case GET_PLAYLISTS_SUCCESS:
+      return {
+        ...state,
+        playlists: action.payload,
+      };
+    case GET_PLAYLISTS_FAIL:
+      return {
+        ...state,
+        err: action.err,
+      };
+    case GET_RECENT_SUCCESS:
+      return {
+        ...state,
+        recentTracks: [...action.payload.data.items],
+      };
+    case GET_RECENT_FAIL:
+      return {
+        ...state,
+        err: action.err,
+      };
+    case PLAY_SONG:
+      return {
+        ...state,
+        url: action.url,
       };
     default:
       return state;
