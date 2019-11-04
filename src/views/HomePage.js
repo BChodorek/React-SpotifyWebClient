@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import styled from 'styled-components';
 import UserInfo from 'components/User/UserInfo';
 import PlaylistGrid from 'components/Playlists/PlaylistGrid';
-import { connect } from 'react-redux';
-import Sidebar from '../components/Sidebar/Sidebar';
+import Sidebar from 'components/Sidebar/Sidebar';
+import Player from 'components/Player/Player';
 import { getUser } from 'actions/UserActions';
 import { getAllPlaylists } from 'actions/PlaylistsActions';
 import { getRecentlyPlayed } from 'actions/PlaylistsActions';
-import { playSong } from 'actions/PlayerActions';
 
 const StyledWrapper = styled.div``;
 const StyledFlex = styled.div`
@@ -34,7 +34,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const { userName, userImg, playlists, recentTracks, playSong, isPlaying, songId } = this.props;
+    const { userName, userImg, playlists, recentTracks } = this.props;
     return (
       <>
         {playlists && recentTracks ? (
@@ -42,14 +42,9 @@ class HomePage extends Component {
             <Sidebar playlists={playlists} />
             <StyledFlex>
               <UserInfo userImg={userImg} userName={userName} />
-              <PlaylistGrid
-                playlists={playlists}
-                recentTracks={recentTracks}
-                playSong={playSong}
-                isPlaying={isPlaying}
-                songId={songId}
-              />
+              <PlaylistGrid playlists={playlists} recentTracks={recentTracks} />
             </StyledFlex>
+            <Player />
           </StyledWrapper>
         ) : (
           <StyledHeading>Loading...</StyledHeading>
@@ -59,29 +54,18 @@ class HomePage extends Component {
   }
 }
 
-const mapStateToProps = ({
-  token,
-  playlists,
-  userName,
-  userImg,
-  recentTracks,
-  isPlaying,
-  songId,
-}) => ({
+const mapStateToProps = ({ token, playlists, userName, userImg, recentTracks }) => ({
   token,
   userName,
   userImg,
   playlists,
   recentTracks,
-  isPlaying,
-  songId,
 });
 
 const mapDispatchToProps = dispatch => ({
   getUser: token => dispatch(getUser(token)),
   getAllPlaylists: token => dispatch(getAllPlaylists(token)),
   getRecentlyPlayed: token => dispatch(getRecentlyPlayed(token)),
-  playSong: song => dispatch(playSong(song)),
 });
 export default connect(
   mapStateToProps,

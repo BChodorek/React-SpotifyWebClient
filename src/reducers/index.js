@@ -53,9 +53,7 @@ const rootReducer = (state = initialState, action) => {
     case PLAY_SONG:
       return {
         ...state,
-        songName: action.song,
-        songId: action.song.track.id,
-        isPlaying: true,
+        url: action.url,
       };
     default:
       return state;
