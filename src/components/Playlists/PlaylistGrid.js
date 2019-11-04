@@ -14,8 +14,21 @@ const StyledGrid = styled.div`
   justify-content: stretch;
   margin-bottom: 8rem;
   display: grid;
+<<<<<<< HEAD
+<<<<<<< Updated upstream
   grid-gap: 3rem;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+=======
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+`;
+const StyledHeading = styled.h3`
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+>>>>>>> Stashed changes
+=======
+  grid-gap: 3rem;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+>>>>>>> 30df226a156b43f28b8d4dea001f64add5e655b2
 `;
 
 const StyledHeading = styled.h1`
@@ -31,8 +44,18 @@ class PlaylistGrid extends Component {
       .slice(0, 8)
       .map(playlist => <Card {...playlist} imageUrl={playlist.images[0].url} key={playlist.id} />);
     return (
+<<<<<<< HEAD
+<<<<<<< Updated upstream
       <StyledContainer>
         <StyledHeading>Your recently played:</StyledHeading>
+=======
+      <>
+        <StyledHeading>Your recent playlists:</StyledHeading>
+>>>>>>> Stashed changes
+=======
+      <StyledContainer>
+        <StyledHeading>Your recently played:</StyledHeading>
+>>>>>>> 30df226a156b43f28b8d4dea001f64add5e655b2
         <StyledGrid>
           {recentTracks.map(recentTrack => (
             <Card
