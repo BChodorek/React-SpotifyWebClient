@@ -18,9 +18,6 @@ export const GlobalStyles = createGlobalStyle`
     background: linear-gradient(308deg, rgba(0,0,0,1) 0%, rgba(22,48,26,1) 64%, rgba(103,165,103,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#67a567",GradientType=1);
     background-attachment:fixed;
-    @media(max-width:767px) {
-      font-size:8px;
-    }
   }
 
   body {

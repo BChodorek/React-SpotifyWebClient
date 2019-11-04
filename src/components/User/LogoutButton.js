@@ -11,8 +11,10 @@ const Container = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  font-size: 1rem;
+  font-size: 1.6rem;
   border-color: #fff;
+  cursor: pointer;
+
   :hover {
     border-color: ${({ theme }) => theme.activeGreen};
     background-color: ${({ theme }) => theme.activeGreen};

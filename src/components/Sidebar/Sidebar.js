@@ -6,35 +6,43 @@ import Button from 'components/utilities/Button.js';
 import spotify_logo from 'assets/spotify_logo.svg';
 
 const StyledButton = styled(Button)`
+  transition: 0.3s ease-out;
   @media (max-width: 767px) {
     position: fixed;
     top: 1rem;
     left: 1rem;
-    padding: 1rem;
+    padding: 1.5rem;
     border-radius: 100%;
     border-color: white;
     z-index: 1000;
+
+    &.opened {
+      padding: 1rem;
+      border: none;
+      font-weight: ${({ theme }) => theme.fontWeight.bold};
+      font-size: ${({ theme }) => theme.fontSize.big};
+    }
   }
 `;
 
 const StyledBar = styled.div`
   background-color: ${({ theme }) => theme.black};
   position: fixed;
+  top: 0;
   width: 25rem;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
   align-items: center;
-  transition: ease-in 0.3s;
+  transition: ease-in-out 0.6s;
+  z-index: 999;
 
   @media (max-width: 767px) {
-    display: none;
-    width: 0vw;
+    transform: translateX(-30rem);
     &.active {
-      display: flex;
+      transform: translateX(0px);
       width: 100vw;
-      opacity: 0.9;
+      opacity: 0.99;
     }
   }
 `;
@@ -68,10 +76,16 @@ const StyledList = styled.ul`
   overflow: hidden;
   overflow-y: scroll;
   list-style: none;
+
+  @media (max-width: 767px) {
+    width: 75vw;
+    font-size: 2rem;
+  }
 `;
 
 const ListElement = styled.li`
-  padding: 0.5rem;
+  padding: 0.75rem;
+  cursor: pointer;
   &:hover {
     color: ${({ theme }) => theme.activeGreen};
   }
@@ -92,10 +106,8 @@ class Sidebar extends Component {
     const { playlists } = this.props;
     return (
       <>
-        <StyledButton onClick={this.handleClick}>
-          <div className="bar-1"></div>
-          <div className="bar-2"></div>
-          <div className="bar-3"></div>
+        <StyledButton onClick={this.handleClick} className={this.state.visible ? 'opened' : null}>
+          {this.state.visible ? 'X' : null}
         </StyledButton>
         <StyledBar className={this.state.visible ? 'active' : null}>
           <StyledLink to="/home">

@@ -7,16 +7,9 @@ import Sidebar from '../components/Sidebar/Sidebar';
 import { getUser } from 'actions/UserActions';
 import { getAllPlaylists } from 'actions/PlaylistsActions';
 import { getRecentlyPlayed } from 'actions/PlaylistsActions';
+import { playSong } from 'actions/PlayerActions';
 
-const StyledWrapper = styled.div`
-  display: grid;
-  grid-gap: 2rem;
-  grid-template-columns: 25rem auto;
-  @media (max-width: 767px) {
-    grid-template-columns: auto;
-    grid-gap: 0;
-  }
-`;
+const StyledWrapper = styled.div``;
 const StyledFlex = styled.div`
   grid-column-start: 2;
   display: flex;
@@ -41,39 +34,54 @@ class HomePage extends Component {
   }
 
   render() {
-    const { token, userName, userImg, playlists, recentTracks } = this.props;
+    const { userName, userImg, playlists, recentTracks, playSong, isPlaying, songId } = this.props;
     return (
       <>
-        <>
-          {playlists && recentTracks ? (
-            <StyledWrapper>
-              <Sidebar playlists={playlists} />
-              <StyledFlex>
-                <UserInfo userImg={userImg} userName={userName} />
-                <PlaylistGrid token={token} playlists={playlists} recentTracks={recentTracks} />
-              </StyledFlex>
-            </StyledWrapper>
-          ) : (
-            <StyledHeading>Loading...</StyledHeading>
-          )}
-        </>
+        {playlists && recentTracks ? (
+          <StyledWrapper>
+            <Sidebar playlists={playlists} />
+            <StyledFlex>
+              <UserInfo userImg={userImg} userName={userName} />
+              <PlaylistGrid
+                playlists={playlists}
+                recentTracks={recentTracks}
+                playSong={playSong}
+                isPlaying={isPlaying}
+                songId={songId}
+              />
+            </StyledFlex>
+          </StyledWrapper>
+        ) : (
+          <StyledHeading>Loading...</StyledHeading>
+        )}
       </>
     );
   }
 }
 
-const mapStateToProps = ({ token, playlists, userName, userImg, recentTracks }) => ({
+const mapStateToProps = ({
+  token,
+  playlists,
+  userName,
+  userImg,
+  recentTracks,
+  isPlaying,
+  songId,
+}) => ({
   token,
   userName,
   userImg,
   playlists,
   recentTracks,
+  isPlaying,
+  songId,
 });
 
 const mapDispatchToProps = dispatch => ({
   getUser: token => dispatch(getUser(token)),
   getAllPlaylists: token => dispatch(getAllPlaylists(token)),
   getRecentlyPlayed: token => dispatch(getRecentlyPlayed(token)),
+  playSong: song => dispatch(playSong(song)),
 });
 export default connect(
   mapStateToProps,
