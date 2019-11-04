@@ -11,10 +11,10 @@ const StyledContainer = styled.div`
 `;
 
 const StyledGrid = styled.div`
-  justify-content: space-evenly;
+  justify-content: stretch;
   margin-bottom: 8rem;
   display: grid;
-  grid-gap: 2rem;
+  grid-gap: 3rem;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 `;
 
@@ -38,8 +38,8 @@ class PlaylistGrid extends Component {
             <Card
               name={recentTrack.track.name}
               imageUrl={recentTrack.track.album.images[0].url}
+              previewUrl={recentTrack.track.preview_url}
               key={recentTrack.track.id}
-              playPreview={() => this.playPreview(recentTrack)}
             />
           ))}
         </StyledGrid>

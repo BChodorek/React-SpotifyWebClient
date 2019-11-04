@@ -1,6 +1,6 @@
 import * as constants from './constants';
 
-export const playSong = song => ({
+export const playSong = url => ({
   type: constants.PLAY_SONG,
-  song,
+  url,
 });
