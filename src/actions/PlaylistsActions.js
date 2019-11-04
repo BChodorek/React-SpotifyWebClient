@@ -26,14 +26,14 @@ const fetchPlaylists = (
 };
 
 export const getAllPlaylists = token => dispatch => {
-  fetchPlaylists(token)
+  return fetchPlaylists(token)
     .then(payload => dispatch({ type: GET_PLAYLISTS_SUCCESS, payload }))
     .catch(err => dispatch({ type: GET_PLAYLISTS_FAIL, err }));
 };
 
 export const getRecentlyPlayed = token => dispatch => {
   return axios
-    .get('https://api.spotify.com/v1/me/player/recently-played?type=track&limit=7', {
+    .get('https://api.spotify.com/v1/me/player/recently-played?type=track&limit=10', {
       headers: { Authorization: 'Bearer ' + token },
     })
     .then(payload => {

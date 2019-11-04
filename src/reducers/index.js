@@ -6,6 +6,7 @@ import {
   GET_PLAYLISTS_FAIL,
   GET_RECENT_SUCCESS,
   GET_RECENT_FAIL,
+  PLAY_SONG,
 } from '../actions/constants';
 
 const initialState = {};
@@ -18,10 +19,11 @@ const rootReducer = (state = initialState, action) => {
         token: action.token,
       };
     case GET_USER_SUCCESS:
+      const { data } = action.payload;
       return {
         ...state,
-        userName: action.payload.data.display_name,
-        userImg: action.payload.data.images[0].url,
+        userName: data.display_name,
+        userImg: data.images[0] ? data.images[0].url : null,
       };
     case GET_USER_FAIL:
       return {
@@ -42,6 +44,18 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         recentTracks: [...action.payload.data.items],
+      };
+    case GET_RECENT_FAIL:
+      return {
+        ...state,
+        err: action.err,
+      };
+    case PLAY_SONG:
+      return {
+        ...state,
+        songName: action.song,
+        songId: action.song.track.id,
+        isPlaying: true,
       };
     default:
       return state;
