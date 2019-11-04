@@ -17,9 +17,6 @@ const StyledGrid = styled.div`
   grid-gap: 3rem;
   grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
 `;
-const StyledHeading = styled.h3`
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-`;
 
 const StyledHeading = styled.h1`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
