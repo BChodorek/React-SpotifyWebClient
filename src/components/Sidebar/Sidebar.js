@@ -2,24 +2,25 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import LogoutButton from 'components/User/LogoutButton';
-import Button from 'components/utilities/Button.js';
 import spotify_logo from 'assets/spotify_logo.svg';
 
-const StyledButton = styled(Button)`
-  transition: 0.3s ease-out;
+const StyledButton = styled.p`
+  transition: 0.2s ease;
   @media (max-width: 767px) {
     position: fixed;
     top: 1rem;
     left: 1rem;
+    width: 2rem;
+    height: 2rem;
     padding: 1.5rem;
     border-radius: 100%;
-    border-color: white;
+    border: 0.2rem solid ${({ theme }) => theme.white};
     z-index: 1000;
 
     &.opened {
       padding: 1rem;
       border: none;
-      font-weight: ${({ theme }) => theme.fontWeight.bold};
+      font-weight: ${({ theme }) => theme.fontWeight.light};
       font-size: ${({ theme }) => theme.fontSize.big};
     }
   }
@@ -42,7 +43,7 @@ const StyledBar = styled.div`
     &.active {
       transform: translateX(0px);
       width: 100vw;
-      opacity: 0.99;
+      /* opacity: 0.99; */
     }
   }
 `;
@@ -57,6 +58,11 @@ const SpotifyLogo = styled.div`
   background-position: center;
   width: 12rem;
   height: 10rem;
+  margin: 1rem;
+  @media (max-width: 767px) {
+    width: 8rem;
+    height: 6rem;
+  }
 `;
 
 const StyledTitle = styled.h3`
@@ -78,8 +84,8 @@ const StyledList = styled.ul`
   list-style: none;
 
   @media (max-width: 767px) {
-    width: 75vw;
-    font-size: 2rem;
+    width: 100vw;
+    font-size: 1.6rem;
   }
 `;
 
@@ -91,6 +97,7 @@ const ListElement = styled.li`
   }
 `;
 
+const StyledLogoutButton = styled(LogoutButton)``;
 class Sidebar extends Component {
   state = {
     visible: false,
@@ -107,8 +114,9 @@ class Sidebar extends Component {
     return (
       <>
         <StyledButton onClick={this.handleClick} className={this.state.visible ? 'opened' : null}>
-          {this.state.visible ? 'X' : null}
+          {this.state.visible ? 'x' : null}
         </StyledButton>
+
         <StyledBar className={this.state.visible ? 'active' : null}>
           <StyledLink to="/home">
             <SpotifyLogo />
@@ -121,7 +129,7 @@ class Sidebar extends Component {
               <ListElement key={playlist.id}>{playlist.name}</ListElement>
             ))}
           </StyledList>
-          <LogoutButton />
+          <StyledLogoutButton />
         </StyledBar>
       </>
     );

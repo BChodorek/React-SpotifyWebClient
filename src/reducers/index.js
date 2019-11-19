@@ -7,6 +7,7 @@ import {
   GET_RECENT_SUCCESS,
   GET_RECENT_FAIL,
   PLAY_SONG,
+  PAUSE_SONG,
 } from '../actions/constants';
 
 const initialState = {};
@@ -54,6 +55,13 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         url: action.url,
+        isPlaying: true,
+      };
+    case PAUSE_SONG:
+      return {
+        ...state,
+        url: action.url,
+        isPlaying: false,
       };
     default:
       return state;

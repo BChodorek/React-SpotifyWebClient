@@ -15,6 +15,7 @@ Things I've learned while building this app:
 - implementing protected routes
 
 ### To-do:
+- [x] RWD
 - [x] Token Auth
 - [x] Audio Track Preview *note that not all tracks possess 30s preview*
 - [ ] Single Playlist view

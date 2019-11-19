@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { playSong } from 'actions/PlayerActions';
 import playButton from 'assets/play-button.svg';
+import pauseButton from 'assets/pause-button.svg';
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -45,7 +46,7 @@ const StyledButton = styled.div`
 `;
 
 const StyledIcon = styled.div`
-  background: url(${playButton});
+  background: url(${props => (props.isplaying ? pauseButton : playButton)});
   background-size: 75%;
   background-repeat: no-repeat;
   background-position: center;
@@ -55,11 +56,10 @@ const StyledIcon = styled.div`
   transition: 0.15s ease;
 `;
 
-const Card = ({ imageUrl, name, previewUrl, playSong }) => {
+const Card = ({ imageUrl, name, previewUrl, playSong, isPlaying }) => {
   const togglePlay = () => {
     playSong(previewUrl);
   };
-
   return (
     <StyledContainer>
       <div className="container">
@@ -68,18 +68,22 @@ const Card = ({ imageUrl, name, previewUrl, playSong }) => {
             <StyledIcon />
           </StyledButton>
         )}
-        <img src={imageUrl} />
+        <img src={imageUrl} isplaying />
       </div>
       <p>{name}</p>
     </StyledContainer>
   );
 };
 
+const mapStateToProps = ({ isPlaying }) => ({
+  isPlaying,
+});
+
 const mapDispatchToProps = dispatch => ({
   playSong: url => dispatch(playSong(url)),
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Card);

@@ -6,3 +6,4 @@ export const GET_PLAYLISTS_FAIL = 'GET_PLAYLISTS_FAIL';
 export const GET_RECENT_SUCCESS = 'GET_RECENT_SUCCESS';
 export const GET_RECENT_FAIL = 'GET_RECENT_FAIL';
 export const PLAY_SONG = 'PLAY_SONG';
+export const PAUSE_SONG = 'PAUSE_SONG';
