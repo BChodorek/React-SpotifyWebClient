@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
-import { playSong } from 'actions/PlayerActions';
+import { setSong, pauseSong, playSong } from 'actions/PlayerActions';
 import playButton from 'assets/play-button.svg';
+<<<<<<< Updated upstream
+=======
+import pauseButton from 'assets/pause-button.svg';
+
+>>>>>>> Stashed changes
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,11 +48,17 @@ const StyledButton = styled.div`
     }
   }
 `;
+<<<<<<< Updated upstream
 
 const StyledIcon = styled.div`
   background: url(${playButton});
   background-size: 75%;
+=======
+const PlayButton = styled.div`
+  background: url(${playButton});
+>>>>>>> Stashed changes
   background-repeat: no-repeat;
+  background-size: 75%;
   background-position: center;
   width: 100%;
   height: 100%;
@@ -55,6 +66,7 @@ const StyledIcon = styled.div`
   transition: 0.15s ease;
 `;
 
+<<<<<<< Updated upstream
 const Card = ({ imageUrl, name, previewUrl, playSong }) => {
   const togglePlay = () => {
     playSong(previewUrl);
@@ -75,8 +87,48 @@ const Card = ({ imageUrl, name, previewUrl, playSong }) => {
   );
 };
 
+=======
+const PauseButton = styled(PlayButton)`
+  background: url(${pauseButton});
+  background-repeat: no-repeat;
+  background-size: 75%;
+  background-position: center;
+  opacity: 1;
+`;
+
+class Card extends Component {
+  render() {
+    const { imageUrl, name, previewUrl, songUrl, isPlaying, setSong, pauseSong } = this.props;
+    return (
+      <StyledContainer>
+        <div className="container">
+          {previewUrl && (
+            <StyledButton>
+              {songUrl === previewUrl && isPlaying ? (
+                <PauseButton onClick={() => pauseSong()} />
+              ) : (
+                <PlayButton onClick={() => setSong(previewUrl)} />
+              )}
+            </StyledButton>
+          )}
+          <img src={imageUrl} alt={name + 'album cover'} />
+        </div>
+        <p>{name}</p>
+      </StyledContainer>
+    );
+  }
+}
+
+const mapStateToProps = ({ songUrl, isPlaying }) => ({
+  songUrl,
+  isPlaying,
+});
+
+>>>>>>> Stashed changes
 const mapDispatchToProps = dispatch => ({
-  playSong: url => dispatch(playSong(url)),
+  setSong: previewUrl => dispatch(setSong(previewUrl)),
+  pauseSong: () => dispatch(pauseSong()),
+  playSong: () => dispatch(playSong()),
 });
 
 export default connect(

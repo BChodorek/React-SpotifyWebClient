@@ -5,8 +5,13 @@ import LogoutButton from 'components/User/LogoutButton';
 import Button from 'components/utilities/Button.js';
 import spotify_logo from 'assets/spotify_logo.svg';
 
+<<<<<<< Updated upstream
 const StyledButton = styled(Button)`
   transition: 0.3s ease-out;
+=======
+const StyledButton = styled.p`
+  transition: 0.52s ease;
+>>>>>>> Stashed changes
   @media (max-width: 767px) {
     position: fixed;
     top: 1rem;
@@ -38,7 +43,7 @@ const StyledBar = styled.div`
   z-index: 999;
 
   @media (max-width: 767px) {
-    transform: translateX(-30rem);
+    transform: translateX(-50rem);
     &.active {
       transform: translateX(0px);
       width: 100vw;

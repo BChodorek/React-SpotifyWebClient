@@ -6,6 +6,7 @@ import {
   GET_PLAYLISTS_FAIL,
   GET_RECENT_SUCCESS,
   GET_RECENT_FAIL,
+  SET_SONG,
   PLAY_SONG,
 } from '../actions/constants';
 
@@ -50,10 +51,24 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         err: action.err,
       };
+    case SET_SONG:
+      return {
+        ...state,
+        songUrl: action.url,
+      };
     case PLAY_SONG:
       return {
         ...state,
+<<<<<<< Updated upstream
         url: action.url,
+=======
+        isPlaying: action.isPlaying,
+      };
+    case PAUSE_SONG:
+      return {
+        ...state,
+        isPlaying: action.isPlaying,
+>>>>>>> Stashed changes
       };
     default:
       return state;

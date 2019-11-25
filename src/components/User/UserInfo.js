@@ -39,7 +39,7 @@ const UserInfo = ({ userName, userImg }) => {
       <StyledWrapper>
         {userImg && (
           <ImgWrapper>
-            <StyledImg src={userImg} alt="avatar" />
+            <StyledImg src={userImg} alt="User avatar" />
           </ImgWrapper>
         )}
         <h1>{userName}</h1>
