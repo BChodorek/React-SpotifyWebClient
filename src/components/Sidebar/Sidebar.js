@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import LogoutButton from 'components/User/LogoutButton';
-import spotify_logo from 'assets/spotify_logo.svg';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import LogoutButton from "components/User/LogoutButton";
+import spotify_logo from "assets/spotify_logo.svg";
 
 const StyledButton = styled.p`
-  transition: 0.2s ease;
+  transition: 0.52s ease;
   @media (max-width: 767px) {
     position: fixed;
     top: 1rem;
@@ -39,7 +39,7 @@ const StyledBar = styled.div`
   z-index: 999;
 
   @media (max-width: 767px) {
-    transform: translateX(-30rem);
+    transform: translateX(-50rem);
     &.active {
       transform: translateX(0px);
       width: 100vw;
@@ -100,12 +100,12 @@ const ListElement = styled.li`
 const StyledLogoutButton = styled(LogoutButton)``;
 class Sidebar extends Component {
   state = {
-    visible: false,
+    visible: false
   };
 
   handleClick = () => {
     this.setState({
-      visible: !this.state.visible,
+      visible: !this.state.visible
     });
   };
 
@@ -113,11 +113,14 @@ class Sidebar extends Component {
     const { playlists } = this.props;
     return (
       <>
-        <StyledButton onClick={this.handleClick} className={this.state.visible ? 'opened' : null}>
-          {this.state.visible ? 'x' : null}
+        <StyledButton
+          onClick={this.handleClick}
+          className={this.state.visible ? "opened" : null}
+        >
+          {this.state.visible ? "x" : null}
         </StyledButton>
 
-        <StyledBar className={this.state.visible ? 'active' : null}>
+        <StyledBar className={this.state.visible ? "active" : null}>
           <StyledLink to="/home">
             <SpotifyLogo />
             <StyledTitle>

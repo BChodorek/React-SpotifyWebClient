@@ -6,9 +6,10 @@ import {
   GET_PLAYLISTS_FAIL,
   GET_RECENT_SUCCESS,
   GET_RECENT_FAIL,
+  SET_SONG,
   PLAY_SONG,
-  PAUSE_SONG,
-} from '../actions/constants';
+  PAUSE_SONG
+} from "../actions/constants";
 
 const initialState = {};
 
@@ -17,51 +18,54 @@ const rootReducer = (state = initialState, action) => {
     case SET_TOKEN:
       return {
         ...state,
-        token: action.token,
+        token: action.token
       };
     case GET_USER_SUCCESS:
       const { data } = action.payload;
       return {
         ...state,
         userName: data.display_name,
-        userImg: data.images[0] ? data.images[0].url : null,
+        userImg: data.images[0] ? data.images[0].url : null
       };
     case GET_USER_FAIL:
       return {
         ...state,
-        err: action.err,
+        err: action.err
       };
     case GET_PLAYLISTS_SUCCESS:
       return {
         ...state,
-        playlists: action.payload,
+        playlists: action.payload
       };
     case GET_PLAYLISTS_FAIL:
       return {
         ...state,
-        err: action.err,
+        err: action.err
       };
     case GET_RECENT_SUCCESS:
       return {
         ...state,
-        recentTracks: [...action.payload.data.items],
+        recentTracks: [...action.payload.data.items]
       };
     case GET_RECENT_FAIL:
       return {
         ...state,
-        err: action.err,
+        err: action.err
+      };
+    case SET_SONG:
+      return {
+        ...state,
+        songUrl: action.url
       };
     case PLAY_SONG:
       return {
         ...state,
-        url: action.url,
-        isPlaying: true,
+        isPlaying: action.isPlaying
       };
     case PAUSE_SONG:
       return {
         ...state,
-        url: action.url,
-        isPlaying: false,
+        isPlaying: action.isPlaying
       };
     default:
       return state;

@@ -1,12 +1,14 @@
-import * as constants from './constants';
+import * as constants from "./constants";
 
-export const playSong = (url, isPlaying) => ({
-  type: constants.PLAY_SONG,
-  url,
-  isPlaying,
+export const setSong = url => ({
+  type: constants.SET_SONG,
+  url
 });
-export const pauseSong = (url, isPlaying) => ({
+export const playSong = () => ({
+  type: constants.PLAY_SONG,
+  isPlaying: true
+});
+export const pauseSong = () => ({
   type: constants.PAUSE_SONG,
-  url,
-  isPlaying,
+  isPlaying: false
 });

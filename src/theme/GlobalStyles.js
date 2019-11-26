@@ -13,11 +13,11 @@ export const GlobalStyles = createGlobalStyle`
   html {
     font-size: 62.5%;
     background: rgb(0,0,0);
-    background: -moz-linear-gradient(308deg, rgba(0,0,0,1) 0%, rgba(22,48,26,1) 64%, rgba(103,165,103,1) 100%);
-    background: -webkit-linear-gradient(308deg, rgba(0,0,0,1) 0%, rgba(22,48,26,1) 64%, rgba(103,165,103,1) 100%);
-    background: linear-gradient(308deg, rgba(0,0,0,1) 0%, rgba(22,48,26,1) 64%, rgba(103,165,103,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#67a567",GradientType=1);
+    background: #134E5E;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #71B280, #134E5E);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #71B280, #134E5E); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     background-attachment:fixed;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#67a567",GradientType=1);
   }
 
   body {
