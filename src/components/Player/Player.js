@@ -74,13 +74,12 @@ export class Player extends Component {
   }
 
   playAudio = songUrl => {
-    const { playSong, pauseSong, isPlaying } = this.props;
+    const { playSong } = this.props;
     if (this.audio === undefined) {
       this.audio = new Audio(songUrl);
       this.audio.play();
       playSong();
     } else if (this.audio.src === songUrl && this.audio.paused) {
-      console.log("tiny riiiick!!");
       playSong();
       this.audio.play();
     } else {
