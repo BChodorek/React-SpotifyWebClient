@@ -3,11 +3,8 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 import { setSong, pauseSong, playSong } from 'actions/PlayerActions';
 import playButton from 'assets/play-button.svg';
-<<<<<<< Updated upstream
-=======
 import pauseButton from 'assets/pause-button.svg';
 
->>>>>>> Stashed changes
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -48,15 +45,8 @@ const StyledButton = styled.div`
     }
   }
 `;
-<<<<<<< Updated upstream
-
-const StyledIcon = styled.div`
-  background: url(${playButton});
-  background-size: 75%;
-=======
 const PlayButton = styled.div`
   background: url(${playButton});
->>>>>>> Stashed changes
   background-repeat: no-repeat;
   background-size: 75%;
   background-position: center;
@@ -66,28 +56,6 @@ const PlayButton = styled.div`
   transition: 0.15s ease;
 `;
 
-<<<<<<< Updated upstream
-const Card = ({ imageUrl, name, previewUrl, playSong }) => {
-  const togglePlay = () => {
-    playSong(previewUrl);
-  };
-
-  return (
-    <StyledContainer>
-      <div className="container">
-        {previewUrl && (
-          <StyledButton onClick={togglePlay}>
-            <StyledIcon />
-          </StyledButton>
-        )}
-        <img src={imageUrl} />
-      </div>
-      <p>{name}</p>
-    </StyledContainer>
-  );
-};
-
-=======
 const PauseButton = styled(PlayButton)`
   background: url(${pauseButton});
   background-repeat: no-repeat;
@@ -124,7 +92,6 @@ const mapStateToProps = ({ songUrl, isPlaying }) => ({
   isPlaying,
 });
 
->>>>>>> Stashed changes
 const mapDispatchToProps = dispatch => ({
   setSong: previewUrl => dispatch(setSong(previewUrl)),
   pauseSong: () => dispatch(pauseSong()),

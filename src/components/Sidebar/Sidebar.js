@@ -5,13 +5,8 @@ import LogoutButton from 'components/User/LogoutButton';
 import Button from 'components/utilities/Button.js';
 import spotify_logo from 'assets/spotify_logo.svg';
 
-<<<<<<< Updated upstream
-const StyledButton = styled(Button)`
-  transition: 0.3s ease-out;
-=======
 const StyledButton = styled.p`
   transition: 0.52s ease;
->>>>>>> Stashed changes
   @media (max-width: 767px) {
     position: fixed;
     top: 1rem;

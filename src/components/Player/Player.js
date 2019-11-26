@@ -1,9 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-<<<<<<< Updated upstream
-
-export class Player extends Component {
-=======
 import styled from 'styled-components';
 import playButton from 'assets/play-button.svg';
 import pauseButton from 'assets/pause-button.svg';
@@ -68,7 +64,6 @@ export class Player extends Component {
 
   componentDidMount() {}
 
->>>>>>> Stashed changes
   componentDidUpdate(prevProps) {
     const { songUrl, isPlaying } = this.props;
     if (prevProps.songUrl !== songUrl) {
@@ -78,8 +73,6 @@ export class Player extends Component {
     }
   }
 
-<<<<<<< Updated upstream
-=======
   playAudio = songUrl => {
     const { playSong, pauseSong, isPlaying } = this.props;
     if (this.audio === undefined) {
@@ -114,17 +107,11 @@ export class Player extends Component {
     });
   };
 
->>>>>>> Stashed changes
   render() {
     const { songUrl, isPlaying } = this.props;
     const { currentTime, audioProgress } = this.state;
     const formattedTime = currentTime <= 9 ? `0${currentTime}` : currentTime;
     return (
-<<<<<<< Updated upstream
-      <div>
-        <audio src={url} ref={ref => (this.audio = ref)}></audio>
-      </div>
-=======
       <PlayerWrapper>
         {isPlaying ? (
           <PauseButton onClick={() => this.pauseAudio()} />
@@ -136,7 +123,6 @@ export class Player extends Component {
           <div>0:{formattedTime && currentTime ? formattedTime : '00'}/0:30</div>
         </ProgressBar>
       </PlayerWrapper>
->>>>>>> Stashed changes
     );
   }
 }
@@ -146,14 +132,10 @@ const mapStateToProps = ({ songUrl, isPlaying }) => ({
   isPlaying,
 });
 
-<<<<<<< Updated upstream
-const mapDispatchToProps = {};
-=======
 const mapDispatchToProps = dispatch => ({
   playSong: () => dispatch(playSong()),
   pauseSong: () => dispatch(pauseSong()),
 });
->>>>>>> Stashed changes
 
 export default connect(
   mapStateToProps,
