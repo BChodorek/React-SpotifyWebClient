@@ -1,13 +1,12 @@
 import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600');
-
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,600&display=swap');
   *, *::before, *::after {
     box-sizing: border-box;
     margin:0;
     padding: 0;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Raleway', sans-serif;
   }
 
   html {

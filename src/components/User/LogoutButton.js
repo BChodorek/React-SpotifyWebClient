@@ -6,8 +6,7 @@ import { connect } from 'react-redux';
 import { setToken } from 'actions/AuthActions';
 
 const Container = styled.div`
-  margin-top: auto;
-  margin-bottom: 3rem;
+  margin:1em;
 `;
 
 const StyledButton = styled(Button)`

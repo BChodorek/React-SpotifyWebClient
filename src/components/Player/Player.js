@@ -8,15 +8,15 @@ import { playSong, pauseSong } from "actions/PlayerActions";
 const PlayerWrapper = styled.div`
   position: fixed;
   bottom: 0;
+  margin-left: 25rem;
   width: 100%;
   height: 10vh;
-  padding: 3rem;
   background-color: ${({ theme }) => theme.black};
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  margin-left: 25rem;
+  z-index:999;
   @media (max-width: 767px) {
     margin-left: 0;
   }
@@ -43,7 +43,7 @@ const PauseButton = styled(PlayButton)`
 `;
 
 const ProgressBar = styled.div`
-  width: 70%;
+  width: 60%;
   height: 4px;
   border-radius: 2px;
   background-color: ${({ theme }) => theme.lightGrey};
@@ -54,6 +54,9 @@ const ProgressBar = styled.div`
     z-index: 12;
     background-color: ${({ theme }) => theme.activeGreen};
   }
+  & div:last-of-type {
+    padding-top:8px;
+  }
 `;
 
 export class Player extends Component {
@@ -62,27 +65,35 @@ export class Player extends Component {
     currentTime: 0
   };
 
-  componentDidMount() {}
-
   componentDidUpdate(prevProps) {
     const { songUrl, isPlaying } = this.props;
     if (prevProps.songUrl !== songUrl) {
-      this.playAudio(songUrl);
+      this.playAudio();
     } else if (prevProps.isPlaying && !isPlaying) {
       this.pauseAudio();
+    } else if (!prevProps.isPlaying && isPlaying) {
+      this.playAudio();
     }
   }
 
-  playAudio = songUrl => {
-    const { playSong } = this.props;
+  componentWillUnmount() {
+    if (this.audio) {
+      this.audio.removeEventListener("timeupdate", this.timeUpdate, false);
+      this.audio.removeEventListener("ended", this.pauseAudio, false);
+      this.audio.pause();
+    }
+  }
+
+  playAudio = () => {
+    const { playSong, songUrl } = this.props;
     if (this.audio === undefined) {
       this.audio = new Audio(songUrl);
-      this.audio.play();
       playSong();
+      this.audio.play();
     } else if (this.audio.src === songUrl && this.audio.paused) {
       playSong();
       this.audio.play();
-    } else {
+    } else if (this.audio.src !== songUrl){
       this.pauseAudio();
       this.audio = new Audio(songUrl);
       this.audio.play();
@@ -107,7 +118,7 @@ export class Player extends Component {
   };
 
   render() {
-    const { songUrl, isPlaying } = this.props;
+    const { isPlaying } = this.props;
     const { currentTime, audioProgress } = this.state;
     const formattedTime = currentTime <= 9 ? `0${currentTime}` : currentTime;
     return (
@@ -115,7 +126,7 @@ export class Player extends Component {
         {isPlaying ? (
           <PauseButton onClick={() => this.pauseAudio()} />
         ) : (
-          <PlayButton onClick={() => this.playAudio(songUrl)} />
+          <PlayButton onClick={() => this.playAudio()} />
         )}
         <ProgressBar audioProgress={audioProgress}>
           <div className="progressFill"></div>

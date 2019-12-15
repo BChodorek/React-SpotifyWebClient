@@ -12,7 +12,8 @@ const Root = () => {
         <Switch>
           <Route exact path="/" render={() => <Redirect to="/login" />} />
           <Route path="/login" component={LoginPage} />
-          <ProtectedRoute path="/home" component={HomePage} />
+          <ProtectedRoute exact path="/home" component={HomePage} />
+          <ProtectedRoute path="/home/:id" component={HomePage} />
         </Switch>
       </StyleProvider>
     </BrowserRouter>

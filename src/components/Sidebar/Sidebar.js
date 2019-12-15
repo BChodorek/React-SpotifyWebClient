@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import {connect} from 'react-redux'
 import styled from "styled-components";
 import LogoutButton from "components/User/LogoutButton";
 import spotify_logo from "assets/spotify_logo.svg";
@@ -43,20 +44,24 @@ const StyledBar = styled.div`
     &.active {
       transform: translateX(0px);
       width: 100vw;
-      /* opacity: 0.99; */
+      opacity: 0.99;
     }
   }
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;
+  color: white;
+  &:hover {
+    color: ${({ theme }) => theme.activeGreen};
+  }
 `;
 
 const SpotifyLogo = styled.div`
   background: url(${spotify_logo});
-  background-size: 60%;
+  background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
-  width: 12rem;
+  width: 10rem;
   height: 10rem;
   margin: 1rem;
   @media (max-width: 767px) {
@@ -86,18 +91,18 @@ const StyledList = styled.ul`
   @media (max-width: 767px) {
     width: 100vw;
     font-size: 1.6rem;
+    height: 80vh;
   }
 `;
 
 const ListElement = styled.li`
   padding: 0.75rem;
-  cursor: pointer;
-  &:hover {
-    color: ${({ theme }) => theme.activeGreen};
-  }
+
 `;
 
-const StyledLogoutButton = styled(LogoutButton)``;
+
+
+
 class Sidebar extends Component {
   state = {
     visible: false
@@ -129,14 +134,18 @@ class Sidebar extends Component {
           </StyledLink>
           <StyledList>
             {playlists.map(playlist => (
-              <ListElement key={playlist.id}>{playlist.name}</ListElement>
+              <ListElement key={playlist.id}><StyledLink to={`/home/${playlist.id}`}>{playlist.name}</StyledLink></ListElement>
             ))}
           </StyledList>
-          <StyledLogoutButton />
+          <LogoutButton />
         </StyledBar>
       </>
     );
   }
 }
 
-export default Sidebar;
+const mapStateToProps = ({playlists}) => ({
+  playlists
+})
+
+export default connect(mapStateToProps)(Sidebar);

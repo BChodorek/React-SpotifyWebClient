@@ -14,12 +14,12 @@ const StyledContainer = styled.div`
   .container {
     position: relative;
     width: 100%;
+    box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
   img {
     width: 100%;
     height: 100%;
-    box-shadow: ${({ theme }) => theme.boxShadow};
   }
 
   p {
@@ -72,7 +72,8 @@ class Card extends Component {
       songUrl,
       isPlaying,
       setSong,
-      pauseSong
+      pauseSong,
+      playSong
     } = this.props;
     return (
       <StyledContainer>
@@ -82,7 +83,7 @@ class Card extends Component {
               {songUrl === previewUrl && isPlaying ? (
                 <PauseButton onClick={() => pauseSong()} />
               ) : (
-                <PlayButton onClick={() => setSong(previewUrl)} />
+                <PlayButton onClick={() => {setSong(previewUrl); playSong()}} />
               )}
             </StyledButton>
           )}

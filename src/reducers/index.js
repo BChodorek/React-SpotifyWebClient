@@ -11,7 +11,11 @@ import {
   PAUSE_SONG
 } from "../actions/constants";
 
-const initialState = {};
+const initialState = {
+  token: null,
+  songUrl: null,
+  isPlaying: false,
+};
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
